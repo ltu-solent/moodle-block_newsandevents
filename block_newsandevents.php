@@ -1,32 +1,36 @@
 <?php
 class block_newsandevents extends block_base {
+
     public function init() {
         $this->title = get_string('newsandevents', 'block_newsandevents');
     }
 
 	  public function get_content() {
+        global $DB;
   		if ($this->content !== null) {
   		  return $this->content;
   		}
+
+      $posts = $DB->get_records('forum_discussions', ['forum' => '2'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
 
       $slider = '<div class="newsandevents">
                   <div class="slideshow-container">
                     <div class="mySlides fade">
                       <div class="numbertext">1 / 3</div>
                       <img src="https://www.w3schools.com/howto/img_mountains_wide.jpg" style="width:100%">
-                      <div class="text">Caption Text</div>
+                      <a class="text" href="http://localhost/moodle/mod/forum/discuss.php?d=' . $posts[count($posts)]->id . '">' . $posts[count($posts)]->name . '</a>
                     </div>
 
                     <div class="mySlides fade">
                       <div class="numbertext">2 / 3</div>
-                      <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
-                      <div class="text">Caption Two</div>
+                      <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" href="http://localhost/moodle/mod/forum/discuss.php?d=' . $posts[count($posts)-1]->id . '" style="width:100%">
+                      <a class="text"  href="http://localhost/moodle/mod/forum/discuss.php?d=' . $posts[count($posts)-1]->id . '">' . $posts[count($posts)-1]->name . '</a>
                     </div>
 
                     <div class="mySlides fade">
                       <div class="numbertext">3 / 3</div>
-                      <img src="https://www.w3schools.com/howto/img_snow_wide.jpg" style="width:100%">
-                      <div class="text">Caption Three</div>
+                      <img src="https://www.w3schools.com/howto/img_snow_wide.jpg" href="http://localhost/moodle/mod/forum/discuss.php?d=' . $posts[count($posts)-2]->id . '" style="width:100%">
+                      <a class="text"  href="http://localhost/moodle/mod/forum/discuss.php?d=' . $posts[count($posts)-2]->id . '">' . $posts[count($posts)-2]->name . '</a>
                     </div>
 
                     <!-- Next and previous buttons -->
@@ -40,7 +44,8 @@ class block_newsandevents extends block_base {
                     <span class="dot" onclick="currentSlide(1)"></span>
                     <span class="dot" onclick="currentSlide(2)"></span>
                     <span class="dot" onclick="currentSlide(3)"></span>
-                  </div>';
+                  </div>
+                  <script src="/moodle/blocks/newsandevents/main.js"></script>';
 
 
   		$this->content = new stdClass;
