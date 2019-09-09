@@ -26,7 +26,7 @@ class block_newsandevents extends block_base {
           $slides .= '<div class="mySlides fade">
                   <div class="numbertext">' . $i . '/' . $imageCount . '</div>
                   <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - $i]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - $i]->id . '/' . $images[$posts[count($posts) - $i]->id]->filename . '" style="width:100%">
-                  <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - $i]->id . '">' . $posts[count($posts) - $i]->name . '</a>
+                  <a class="text" href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - $i]->id . '">' . $posts[count($posts) - $i]->name . '</a>
                 </div>';
               }
 
@@ -38,7 +38,7 @@ class block_newsandevents extends block_base {
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                   </div>
                   <br>
-                  <a href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
+                  <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
                   <script src="/moodle/blocks/newsandevents/main.js"></script>';
 
 
