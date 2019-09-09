@@ -18,7 +18,7 @@
  * Activity results block caps.
  *
  * @package    block_newsandevents
- * @copyright  2015 Stephen Bourget
+ * @copyright  2019 Solent University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
