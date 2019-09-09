@@ -1,6 +1,10 @@
 <?php
 class block_newsandevents extends block_base {
 
+    function has_config() {
+      return true;
+    }
+
     public function init() {
         $this->title = get_string('newsandevents', 'block_newsandevents');
     }
@@ -11,7 +15,7 @@ class block_newsandevents extends block_base {
   		  return $this->content;
   		}
 
-      $posts = $DB->get_records('forum_discussions', ['forum' => '2'], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+      $posts = $DB->get_records('forum_discussions', ['forum' => get_config('newsandevents', 'forumid')], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
       $images = $DB->get_records_sql('SELECT itemid, contextid, filename FROM {files} WHERE component = "mod_forum" AND filename != ".";');
 
       $slider = '<div class="newsandevents">
@@ -46,6 +50,7 @@ class block_newsandevents extends block_base {
                     <span class="dot" onclick="currentSlide(2)"></span>
                     <span class="dot" onclick="currentSlide(3)"></span>
                   </div>
+                  <a href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
                   <script src="/moodle/blocks/newsandevents/main.js"></script>';
 
 
