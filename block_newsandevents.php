@@ -16,26 +16,27 @@ class block_newsandevents extends block_base {
   		}
 
       $posts = $DB->get_records('forum_discussions', ['forum' => get_config('newsandevents', 'forumid')], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
+      $posts = array_values($posts);
       $images = $DB->get_records_sql('SELECT itemid, contextid, filename FROM {files} WHERE component = "mod_forum" AND filename != ".";');
 
       $slider = '<div class="newsandevents">
                   <div class="slideshow-container">
                     <div class="mySlides fade">
                       <div class="numbertext">1 / 3</div>
-                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[count($posts)]->contextid . '/mod_forum/post/' . $posts[count($posts)]->id . '/' . $images[count($posts)]->filename . '" style="width:100%">
-                      <a class="text" href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts)]->id . '">' . $posts[count($posts)]->name . '</a>
+                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - 1]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - 1]->id . '/' . $images[$posts[count($posts) - 1]->id]->filename . '" style="width:100%">
+                      <a class="text" href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - 1]->id . '">' . $posts[count($posts) - 1]->name . '</a>
                     </div>
 
                     <div class="mySlides fade">
                       <div class="numbertext">2 / 3</div>
-                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[count($posts)-1]->contextid . '/mod_forum/post/' . $posts[count($posts)-1]->id . '/' . $images[count($posts)-1]->filename . '" style="width:100%">
-                      <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts)-1]->id . '">' . $posts[count($posts)-1]->name . '</a>
+                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - 2]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - 2]->id . '/' . $images[$posts[count($posts) - 2]->id]->filename . '" style="width:100%">
+                      <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - 2]->id . '">' . $posts[count($posts) - 2]->name . '</a>
                     </div>
 
                     <div class="mySlides fade">
                       <div class="numbertext">3 / 3</div>
-                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[count($posts)-2]->contextid . '/mod_forum/post/' . $posts[count($posts)-2]->id . '/' . $images[count($posts)-2]->filename . '" style="width:100%">
-                      <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts)-2]->id . '">' . $posts[count($posts)-2]->name . '</a>
+                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - 3]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - 3]->id . '/' . $images[$posts[count($posts) - 3]->id]->filename . '" style="width:100%">
+                      <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - 3]->id . '">' . $posts[count($posts) - 3]->name . '</a>
                     </div>
 
                     <!-- Next and previous buttons -->
