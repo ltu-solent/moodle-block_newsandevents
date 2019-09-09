@@ -18,3 +18,10 @@ $settings->add(new admin_setting_configtext(
             '',
             'https://www.eventbrite.co.uk/o/solent-learning-and-teaching-institute-9591331613'
         ));
+
+$settings->add(new admin_setting_configtext(
+            'newsandevents/numberofposts',
+            get_string('numberofposts', 'block_newsandevents'),
+            get_string('numberofpostsdesc', 'block_newsandevents'),
+            '3'
+        ));

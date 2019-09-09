@@ -6,7 +6,7 @@ class block_newsandevents extends block_base {
     }
 
     public function init() {
-        $this->title = get_string('newsandevents', 'block_newsandevents');
+
     }
 
 	  public function get_content() {
@@ -17,40 +17,27 @@ class block_newsandevents extends block_base {
 
       $posts = $DB->get_records('forum_discussions', ['forum' => get_config('newsandevents', 'forumid')], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
       $posts = array_values($posts);
-      $images = $DB->get_records_sql('SELECT itemid, contextid, filename FROM {files} WHERE component = "mod_forum" AND filename != ".";');
+      $images = $DB->get_records_sql('SELECT itemid, contextid, filename FROM {files} WHERE component = "mod_forum" AND filearea = "attachment" AND filename != ".";');
+
+      $imageCount = get_config('newsandevents', 'numberofposts');
+
+      $slides = '';
+      for ($i = 1; $i <= $imageCount; $i++) {
+          $slides .= '<div class="mySlides fade">
+                  <div class="numbertext">' . $i . '/' . $imageCount . '</div>
+                  <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - $i]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - $i]->id . '/' . $images[$posts[count($posts) - $i]->id]->filename . '" style="width:100%">
+                  <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - $i]->id . '">' . $posts[count($posts) - $i]->name . '</a>
+                </div>';
+              }
 
       $slider = '<div class="newsandevents">
-                  <div class="slideshow-container">
-                    <div class="mySlides fade">
-                      <div class="numbertext">1 / 3</div>
-                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - 1]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - 1]->id . '/' . $images[$posts[count($posts) - 1]->id]->filename . '" style="width:100%">
-                      <a class="text" href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - 1]->id . '">' . $posts[count($posts) - 1]->name . '</a>
-                    </div>
-
-                    <div class="mySlides fade">
-                      <div class="numbertext">2 / 3</div>
-                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - 2]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - 2]->id . '/' . $images[$posts[count($posts) - 2]->id]->filename . '" style="width:100%">
-                      <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - 2]->id . '">' . $posts[count($posts) - 2]->name . '</a>
-                    </div>
-
-                    <div class="mySlides fade">
-                      <div class="numbertext">3 / 3</div>
-                      <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - 3]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - 3]->id . '/' . $images[$posts[count($posts) - 3]->id]->filename . '" style="width:100%">
-                      <a class="text"  href="' . $CFG->wwwroot . '/mod/forum/discuss.php?d=' . $posts[count($posts) - 3]->id . '">' . $posts[count($posts) - 3]->name . '</a>
-                    </div>
-
-                    <!-- Next and previous buttons -->
+                  <div class="slideshow-container">'
+                  . $slides .
+                    '<!-- Next and previous buttons -->
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                   </div>
                   <br>
-
-                  <!-- The dots/circles -->
-                  <div style="text-align:center">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                  </div>
                   <a href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
                   <script src="/moodle/blocks/newsandevents/main.js"></script>';
 
