@@ -15,19 +15,31 @@ class block_newsandevents extends block_base {
   		  return $this->content;
   		}
 
-      $posts = $DB->get_records('forum_discussions', ['forum' => get_config('newsandevents', 'forumid')], $sort='', $fields='*', $limitfrom=0, $limitnum=0);
-      $posts = array_values($posts);
-      $images = $DB->get_records_sql('SELECT itemid, contextid, filename FROM {files} WHERE component = "mod_forum" AND filearea = "attachment" AND filename != ".";');
+      $images = $DB->get_records_sql("SELECT file.itemid forum_id, ctx.id ctx_id, file.filename, fp.message
+                                      FROM {forum} f
+                                      JOIN {forum_discussions} fd ON fd.forum = f.id
+                                      JOIN {course_modules} cm ON cm.instance = f.id
+                                      JOIN {context} ctx ON ctx.instanceid = cm.id
+                                      JOIN {files} file ON file.itemid = fd.firstpost AND file.contextid = ctx.id
+                                      JOIN {forum_posts} fp ON fp.id = file.itemid
+                                      WHERE cm.module = 7
+                                      AND filename !='.'
+                                      AND cm.visible = 1
+                                      AND f.id = 68385
+                                      ORDER BY fd.id desc
+                                      LIMIT 0,4;");
 
       $imageCount = get_config('newsandevents', 'numberofposts');
-
       $slides = '';
-      for ($i = 1; $i <= $imageCount; $i++) {
+      $i = 0;
+      foreach ($images as $image) {
           $slides .= '<div class="mySlides fade">
-                  <div class="numbertext">' . $i . '/' . $imageCount . '</div>
-                  <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $images[$posts[count($posts) - $i]->id]->contextid . '/mod_forum/attachment/' . $posts[count($posts) - $i]->id . '/' . $images[$posts[count($posts) - $i]->id]->filename . '" style="width:100%">
-                  <p class="text">' . $posts[count($posts) - $i]->name . '</p>
+                  <div class="numbertext">' . ($i + 1) . '/' . $imageCount . '</div>
+                  <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
+                  . $image->forum_id . '/' . $image->filename . '" style="width:100%">
+                  <p class="text">' . $image->message . '</p>
                 </div>';
+                $i++;
               }
 
       $slider = '<div class="newsandevents">
@@ -39,7 +51,7 @@ class block_newsandevents extends block_base {
                   </div>
                   <br>
                   <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
-                  <script src="/moodle/blocks/newsandevents/main.js"></script>';
+                  <script src="/blocks/newsandevents/main.js"></script>';
 
 
   		$this->content = new stdClass;
