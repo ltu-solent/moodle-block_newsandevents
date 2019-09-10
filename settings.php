@@ -20,8 +20,15 @@ $settings->add(new admin_setting_configtext(
         ));
 
 $settings->add(new admin_setting_configtext(
-            'newsandevents/eventbriteurl',
-            get_string('eventbriteurl', 'block_newsandevents'),
+            'newsandevents/eventbriteurlstaff',
+            get_string('eventbriteurlstaff', 'block_newsandevents'),
+            '',
+            'https://www.eventbrite.co.uk/o/solent-learning-and-teaching-institute-9591331613'
+        ));
+
+$settings->add(new admin_setting_configtext(
+            'newsandevents/eventbriteurlstudents',
+            get_string('eventbriteurlstudent', 'block_newsandevents'),
             '',
             'https://www.eventbrite.co.uk/o/solent-learning-and-teaching-institute-9591331613'
         ));

@@ -20,12 +20,14 @@ class block_newsandevents extends block_base {
                                         WHERE id = $USER->id;");
 
       if ($userRole['student'] != null) {
-        $imageCount = get_config('newsandevents', 'numberofposts');
         $forumID    = get_config('newsandevents', 'forumidstudent');
+        $eventbrite = get_config('newsandevents', 'eventbriteurlstudent');
       } else {
-        $imageCount = get_config('newsandevents', 'numberofposts');
         $forumID    = get_config('newsandevents', 'forumidstaff');
+        $eventbrite = get_config('newsandevents', 'eventbriteurlstaff');
       }
+
+      $imageCount = get_config('newsandevents', 'numberofposts');
 
       $images = $DB->get_records_sql("SELECT file.itemid forum_id, ctx.id ctx_id, file.filename, fp.message
                                       FROM {forum} f

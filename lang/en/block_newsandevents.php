@@ -1,5 +1,6 @@
 <?php
-$string['eventbriteurl'] = 'Eventbrite URL';
+$string['eventbriteurlstaff'] = 'Eventbrite URL for staff';
+$string['eventbriteurlstudent'] = 'Eventbrite URL for students';
 $string['forumidstaff'] = 'Forum ID for staff';
 $string['forumidstudent'] = 'Forum ID for students';
 $string['forumiddesc'] = 'The database ID of the forum containing news and events';
