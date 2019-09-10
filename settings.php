@@ -6,8 +6,15 @@ $settings->add(new admin_setting_heading(
         ));
 
 $settings->add(new admin_setting_configtext(
-            'newsandevents/forumid',
-            get_string('forumid', 'block_newsandevents'),
+            'newsandevents/forumidstaff',
+            get_string('forumidstaff', 'block_newsandevents'),
+            get_string('forumiddesc', 'block_newsandevents'),
+            '0'
+        ));
+
+$settings->add(new admin_setting_configtext(
+            'newsandevents/forumidstudent',
+            get_string('forumidstudent', 'block_newsandevents'),
             get_string('forumiddesc', 'block_newsandevents'),
             '0'
         ));

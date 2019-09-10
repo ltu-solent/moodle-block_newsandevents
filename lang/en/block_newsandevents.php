@@ -1,6 +1,7 @@
 <?php
 $string['eventbriteurl'] = 'Eventbrite URL';
-$string['forumid'] = 'Forum ID';
+$string['forumidstaff'] = 'Forum ID for staff';
+$string['forumidstudent'] = 'Forum ID for students';
 $string['forumiddesc'] = 'The database ID of the forum containing news and events';
 $string['newsandevents'] = 'News and Events';
 $string['newsandevents:addinstance'] = 'Add a new News and Events block';
