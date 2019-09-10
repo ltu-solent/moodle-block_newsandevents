@@ -10,10 +10,17 @@ class block_newsandevents extends block_base {
     }
 
 	  public function get_content() {
-        global $CFG, $DB;
+        global $CFG, $DB, $USER;
   		if ($this->content !== null) {
   		  return $this->content;
   		}
+
+      $userRole = $DB->get_records_sql("SELECT department
+                                        FROM {user}
+                                        WHERE id = $USER->id;");
+
+      $imageCount = get_config('newsandevents', 'numberofposts');
+      $forumID    = get_config('newsandevents', 'forumid');
 
       $images = $DB->get_records_sql("SELECT file.itemid forum_id, ctx.id ctx_id, file.filename, fp.message
                                       FROM {forum} f
@@ -25,11 +32,11 @@ class block_newsandevents extends block_base {
                                       WHERE cm.module = 7
                                       AND filename !='.'
                                       AND cm.visible = 1
-                                      AND f.id = 68385
+                                      AND f.id = $forumID
                                       ORDER BY fd.id desc
-                                      LIMIT 0,4;");
+                                      LIMIT 0,$imageCount;");
 
-      $imageCount = get_config('newsandevents', 'numberofposts');
+
       $slides = '';
       $i = 0;
       foreach ($images as $image) {
