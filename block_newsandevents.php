@@ -18,7 +18,7 @@ class block_newsandevents extends block_base {
       $userRole = $DB->get_records_sql("SELECT department
                                         FROM {user}
                                         WHERE id = $USER->id;");
-                                        
+
       if ($userRole['student'] != null) {
         $imageCount = get_config('newsandevents', 'numberofposts');
         $forumID    = get_config('newsandevents', 'forumidstudent');
@@ -49,7 +49,7 @@ class block_newsandevents extends block_base {
                   <div class="numbertext">' . ($i + 1) . '/' . $imageCount . '</div>
                   <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
                   . $image->forum_id . '/' . $image->filename . '" style="width:100%">
-                  <p class="text">' . $image->message . '</p>
+                  <div class="text">' . $image->message . '</div>
                 </div>';
                 $i++;
               }
@@ -61,8 +61,9 @@ class block_newsandevents extends block_base {
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                   </div>
-                  <br>
-                  <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
+                  <div class="allEvents">
+                  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img><a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
+                  </div>
                   <script src="/blocks/newsandevents/main.js"></script>';
 
 
