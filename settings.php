@@ -2,7 +2,7 @@
 $settings->add(new admin_setting_heading(
             'headerconfig',
             '',
-            ''
+            get_string('instructions', 'block_newsandevents')
         ));
 
 $settings->add(new admin_setting_configtext(
