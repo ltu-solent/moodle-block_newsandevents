@@ -49,9 +49,9 @@ class block_newsandevents extends block_base {
       foreach ($images as $image) {
           $slides .= '<div class="mySlides fade">
                   <div class="numbertext">' . ($i + 1) . '/' . count($images) . '</div>
-                  <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
+                  <a target="_blank" href="' . $image->message . '"><img src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
                   . $image->forum_id . '/' . $image->filename . '" style="width:100%">
-                  <div class="text">' . $image->message . '</div>
+                  </a>
                 </div>';
                 $i++;
               }
