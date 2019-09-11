@@ -48,7 +48,7 @@ class block_newsandevents extends block_base {
       $i = 0;
       foreach ($images as $image) {
           $slides .= '<div class="mySlides fade">
-                  <div class="numbertext">' . ($i + 1) . '/' . $imageCount . '</div>
+                  <div class="numbertext">' . ($i + 1) . '/' . count($images) . '</div>
                   <img src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
                   . $image->forum_id . '/' . $image->filename . '" style="width:100%">
                   <div class="text">' . $image->message . '</div>
@@ -64,7 +64,11 @@ class block_newsandevents extends block_base {
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                   </div>
                   <div class="allEvents">
-                  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img><a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events</a>
+                    <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">
+                      <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
+                      <a class="allEventsText" target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events
+                      </a>
+                    </a>
                   </div>
                   <script src="/blocks/newsandevents/main.js"></script>';
 
