@@ -21,13 +21,17 @@ class block_newsandevents extends block_base {
 
       if ($userRole['student'] != null) {
         $forumID    = get_config('newsandevents', 'forumidstudent');
-        $eventbrite = get_config('newsandevents', 'eventbriteurlstudent');
+        $imageCount = get_config('newsandevents', 'numberofpostsstudents');
+        $links = '  <a target="_blank" href = "' . get_config('newsandevents', 'studenturl1') . '">' . get_config('newsandevents', 'studenturl1text') . '</a>
+                    <br>
+                    <a target="_blank" href = "' . get_config('newsandevents', 'studenturl2') . '">' . get_config('newsandevents', 'studenturl2text') . '</a>';
+        $linksClass = 'allEventsStudent';
       } else {
         $forumID    = get_config('newsandevents', 'forumidstaff');
-        $eventbrite = get_config('newsandevents', 'eventbriteurlstaff');
+        $imageCount = get_config('newsandevents', 'numberofpostsstaff');
+        $links = '  <a target="_blank" href = "' . get_config('newsandevents', 'staffurl') . '">' . get_config('newsandevents', 'staffurltext') . '</a>';
+        $linksClass = 'allEventsStaff';
       }
-
-      $imageCount = get_config('newsandevents', 'numberofposts');
 
       $images = $DB->get_records_sql("SELECT file.itemid forum_id, ctx.id ctx_id, file.filename, fd.name, fp.message
                                       FROM {forum} f
@@ -63,14 +67,10 @@ class block_newsandevents extends block_base {
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                   </div>
                   <div class="allEvents">
-                    <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">
                       <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
-                      <div class="allEventsText">
-                        <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">Link 1</a>
-                        <br>
-                        <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">Link 2</a>
-                      </div>
-                    </a>
+                      <div class="' . $linksClass . '">' .
+                        $links .
+                      '</div>
                   </div>
                   <script src="/blocks/newsandevents/main.js"></script>';
 

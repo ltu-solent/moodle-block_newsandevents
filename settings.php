@@ -20,22 +20,57 @@ $settings->add(new admin_setting_configtext(
         ));
 
 $settings->add(new admin_setting_configtext(
-            'newsandevents/eventbriteurlstaff',
-            get_string('eventbriteurlstaff', 'block_newsandevents'),
+            'newsandevents/staffurl',
+            get_string('staffurl', 'block_newsandevents'),
             '',
             ''
         ));
 
 $settings->add(new admin_setting_configtext(
-            'newsandevents/eventbriteurlstudents',
-            get_string('eventbriteurlstudent', 'block_newsandevents'),
+          'newsandevents/staffurltext',
+          get_string('staffurltext', 'block_newsandevents'),
+          '',
+          'Default URL Text (Change me)'
+      ));
+
+$settings->add(new admin_setting_configtext(
+            'newsandevents/studenturl1',
+            get_string('studenturl1', 'block_newsandevents'),
             '',
             ''
         ));
 
 $settings->add(new admin_setting_configtext(
-            'newsandevents/numberofposts',
-            get_string('numberofposts', 'block_newsandevents'),
-            get_string('numberofpostsdesc', 'block_newsandevents'),
+          'newsandevents/studenturl2',
+          get_string('studenturl2', 'block_newsandevents'),
+          '',
+          ''
+      ));
+
+$settings->add(new admin_setting_configtext(
+          'newsandevents/studenturl1text',
+          get_string('studenturl1text', 'block_newsandevents'),
+          '',
+          'Default URL Text (Change me)'
+      ));
+
+$settings->add(new admin_setting_configtext(
+          'newsandevents/studenturl2text',
+          get_string('studenturl2text', 'block_newsandevents'),
+          '',
+          'Default URL Text (Change me)'
+      ));
+
+$settings->add(new admin_setting_configtext(
+            'newsandevents/numberofpostsstaff',
+            get_string('numberofpostsstaff', 'block_newsandevents'),
+            '',
+            '3'
+        ));
+
+$settings->add(new admin_setting_configtext(
+            'newsandevents/numberofpostsstudents',
+            get_string('numberofpostsstudents', 'block_newsandevents'),
+            '',
             '3'
         ));
