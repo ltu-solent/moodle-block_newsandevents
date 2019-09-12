@@ -29,7 +29,7 @@ class block_newsandevents extends block_base {
 
       $imageCount = get_config('newsandevents', 'numberofposts');
 
-      $images = $DB->get_records_sql("SELECT file.itemid forum_id, ctx.id ctx_id, file.filename, fp.message
+      $images = $DB->get_records_sql("SELECT file.itemid forum_id, ctx.id ctx_id, file.filename, fd.name, fp.message
                                       FROM {forum} f
                                       JOIN {forum_discussions} fd ON fd.forum = f.id
                                       JOIN {course_modules} cm ON cm.instance = f.id
@@ -48,9 +48,9 @@ class block_newsandevents extends block_base {
       $i = 0;
       foreach ($images as $image) {
           $slides .= '<div class="mySlides fade">
-                  <a target="_blank" href="' . $image->message . '"><img src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
+                  <img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
                   . $image->forum_id . '/' . $image->filename . '" style="width:100%">
-                  </a>
+                  <div class="text">' . $image->message . '</div>
                 </div>';
                 $i++;
               }
@@ -65,8 +65,11 @@ class block_newsandevents extends block_base {
                   <div class="allEvents">
                     <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">
                       <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
-                      <a class="allEventsText" target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">All Events
-                      </a>
+                      <div class="allEventsText">
+                        <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">Link 1</a>
+                        <br>
+                        <a target="_blank" href = "' . get_config('newsandevents', 'eventbriteurl') . '">Link 2</a>
+                      </div>
                     </a>
                   </div>
                   <script src="/blocks/newsandevents/main.js"></script>';
