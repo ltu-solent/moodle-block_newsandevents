@@ -54,29 +54,52 @@ class block_newsandevents extends block_base {
 									  LIMIT 0,$imagecount;");
 
 		$slides = '';
-		foreach ($images as $image) {
-		  $slides .= '<div onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="mySlides fade">
-				  <img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
-				  . $image->forum_id . '/' . $image->filename . '" style="width:100%">
-				  <div class="text">' . $image->message . '</div>
-				</div>';
-				$i++;
-			  }
 
-		$slider = '<div class="newsandevents">
-				  <div class="slideshow-container">'
-				  . $slides .
-					'<!-- Next and previous buttons -->
-					<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="prev" onclick="plusSlides(-1)">&#10094;</a>
-					<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="next" onclick="plusSlides(1)">&#10095;</a>
-				  </div>
-				  <div class="allEvents">
-					  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
-					  <div class="' . $linksclass . '">' .
-						$links .
-					  '</div>
-				  </div>
-				  <script src="/blocks/newsandevents/main.js"></script>';
+		if ($imagecount > 1) {
+			foreach ($images as $image) {
+				$slides .= '<div onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="mySlides fade">
+						<img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
+						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
+						<div class="text">' . $image->message . '</div>
+					</div>';
+					$i++;
+					}
+
+			$slider = '<div class="newsandevents">
+					  <div class="slideshow-container">'
+					  . $slides .
+						'<!-- Next and previous buttons -->
+						<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="prev" onclick="plusSlides(-1)">&#10094;</a>
+						<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="next" onclick="plusSlides(1)">&#10095;</a>
+					  </div>
+					  <div class="allEvents">
+						  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
+						  <div class="' . $linksclass . '">' .
+							$links .
+						  '</div>
+					  </div>
+					  <script src="/blocks/newsandevents/main.js"></script>';
+		} else {
+			foreach ($images as $image) {
+				$slides .= '<div class="mySlides fade" style="display:block;">
+						<img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
+						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
+						<div class="text">' . $image->message . '</div>
+					</div>';
+					$i++;
+					}
+			$slider = '<div class="newsandevents">
+					  	<div class="slideshow-container">'
+					   . $slides .
+					   '</div>
+							<div class="allEvents">
+						  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
+						  <div class="' . $linksclass . '">' .
+							$links .
+						  '</div>
+					  </div>';
+		}
+
 
 
 		$this->content = new stdClass;
