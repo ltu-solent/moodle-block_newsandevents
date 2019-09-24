@@ -55,7 +55,7 @@ class block_newsandevents extends block_base {
 
 		$slides = '';
 		foreach ($images as $image) {
-		  $slides .= '<div class="mySlides fade">
+		  $slides .= '<div onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="mySlides fade">
 				  <img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
 				  . $image->forum_id . '/' . $image->filename . '" style="width:100%">
 				  <div class="text">' . $image->message . '</div>
@@ -67,8 +67,8 @@ class block_newsandevents extends block_base {
 				  <div class="slideshow-container">'
 				  . $slides .
 					'<!-- Next and previous buttons -->
-					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-					<a class="next" onclick="plusSlides(1)">&#10095;</a>
+					<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="prev" onclick="plusSlides(-1)">&#10094;</a>
+					<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="next" onclick="plusSlides(1)">&#10095;</a>
 				  </div>
 				  <div class="allEvents">
 					  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
