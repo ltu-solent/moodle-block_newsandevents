@@ -8,7 +8,7 @@ class block_newsandevents extends block_base {
 	public function init() {
 		$this->title = get_string('pluginname', 'block_newsandevents');
 	}
-	
+
 	function hide_header() {
 	  return true;
 	}
@@ -27,7 +27,7 @@ class block_newsandevents extends block_base {
 			if(get_config('newsandevents', 'studenturl1')){
 				$links = '<a target="_blank" href = "' . get_config('newsandevents', 'studenturl1') . '">' . get_config('newsandevents', 'studenturl1text') . '</a>';
 			}
-			
+
 			if(get_config('newsandevents', 'studenturl2')){
 				$links .= '<br><a target="_blank" href = "' . get_config('newsandevents', 'studenturl2') . '">' . get_config('newsandevents', 'studenturl2text') . '</a>';
 			}
@@ -49,7 +49,7 @@ class block_newsandevents extends block_base {
 									  WHERE cm.module = 7
 									  AND filename !='.'
 									  AND cm.visible = 1
-									  AND cm.id = $forumid
+									  AND f.id = $forumid
 									  ORDER BY fd.id desc
 									  LIMIT 0,$imagecount;");
 
