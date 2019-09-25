@@ -57,7 +57,7 @@ class block_newsandevents extends block_base {
 
 		if ($imagecount > 1) {
 			foreach ($images as $image) {
-				$slides .= '<div onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="mySlides fade">
+				$slides .= '<div onmouseover="clearTimeout(timer);" onmouseout="showSlides(slideIndex);" class="mySlides fade">
 						<img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
 						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
 						<div class="text">' . $image->message . '</div>
