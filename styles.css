@@ -64,8 +64,6 @@
       }
     }
 
-
-
     .newsandevents{box-sizing:border-box}
 
     /* Slideshow container */
@@ -81,7 +79,7 @@
     }
 
     /* Next & previous buttons */
-    .newsandevents .prev, .next {
+    .newsandevents .prev, .newsandevents .next {
       cursor: pointer;
       position: absolute;
       top: 50%;
@@ -103,7 +101,7 @@
     }
 
     /* On hover, add a black background color with a little bit see-through */
-    .newsandevents .prev:hover, .next:hover {
+    .newsandevents .prev:hover, .newsandevents .next:hover {
       background-color: rgba(0,0,0,0.8);
     }
 
