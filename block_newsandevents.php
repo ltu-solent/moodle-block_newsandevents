@@ -39,24 +39,27 @@ class block_newsandevents extends block_base {
 			$linksclass = 'allEventsStaff';
 		}
 
-		$images = $DB->get_records_sql("SELECT file.itemid forum_id, ctx.id ctx_id, file.filename, fd.name, fp.message
-									  FROM {forum} f
-									  JOIN {forum_discussions} fd ON fd.forum = f.id
-									  JOIN {course_modules} cm ON cm.instance = f.id
+		$images = $DB->get_records_sql("SELECT  f.itemid forum_id, ctx.id ctx_id, f.filename, fd.name, fp.message
+									  FROM {forum} fo
+									  JOIN {forum_discussions} fd ON fd.forum = fo.id
+                                      JOIN {forum_posts} fp ON fp.discussion = fd.id
+									  JOIN {course_modules} cm ON cm.instance = fo.id
+                                      JOIN {modules} m ON m.id = cm.module
 									  JOIN {context} ctx ON ctx.instanceid = cm.id
-									  JOIN {files} file ON file.itemid = fd.firstpost AND file.contextid = ctx.id
-									  JOIN {forum_posts} fp ON fp.id = file.itemid
-									  WHERE cm.module = 7
-									  AND filename !='.'
-									  AND cm.visible = 1
-									  AND f.id = $forumid
+									  JOIN {files} f ON f.itemid = fp.id AND f.contextid = ctx.id
+								      WHERE m.name = 'forum'
+ 									  AND filename !='.'
+ 									  AND cm.visible = 1
+									  AND cm.id = $forumid
 									  ORDER BY fd.id desc
-									  LIMIT 0,$imagecount;");
+									  LIMIT 0, $imagecount;");
 
 		$slides = '';
+        $i = 0;
 
 		if ($imagecount > 1) {
 			foreach ($images as $image) {
+                var_dump($image);
 				$slides .= '<div onmouseover="clearTimeout(timer);" onmouseout="showSlides(slideIndex);" class="mySlides fade">
 						<img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
 						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
@@ -73,12 +76,12 @@ class block_newsandevents extends block_base {
 						<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="next" onclick="plusSlides(1)">&#10095;</a>
 					  </div>
 					  <div class="allEvents">
-						  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
+						  <img src="' . $CFG->wwwroot . '/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
 						  <div class="' . $linksclass . '">' .
 							$links .
 						  '</div>
 					  </div>
-					  <script src="/blocks/newsandevents/main.js"></script>';
+					  <script src="' . $CFG->wwwroot . '/blocks/newsandevents/main.js"></script>';
 		} else {
 			foreach ($images as $image) {
 				$slides .= '<div class="mySlides fade" style="display:block;">
@@ -93,7 +96,7 @@ class block_newsandevents extends block_base {
 					   . $slides .
 					   '</div>
 							<div class="allEvents">
-						  <img src="/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
+						  <img src="' . $CFG->wwwroot . '/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
 						  <div class="' . $linksclass . '">' .
 							$links .
 						  '</div>
