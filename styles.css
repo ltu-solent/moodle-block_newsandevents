@@ -173,9 +173,9 @@
     .newsandevents .fade {
       opacity: 1;
       -webkit-animation-name: news-fade;
-      -webkit-animation-duration: 1.5s;
+      -webkit-animation-duration: 10000ms;
       animation-name: news-fade;
-      animation-duration: 1.5s;
+      animation-duration: 10000ms;
     }
 
     @-webkit-keyframes news-fade {

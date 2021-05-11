@@ -59,21 +59,21 @@ class block_newsandevents extends block_base {
 
 		if ($imagecount > 1) {
 			foreach ($images as $image) {
-                var_dump($image);
-				$slides .= '<div onmouseover="clearTimeout(timer);" onmouseout="showSlides(slideIndex);" class="mySlides fade">
+                //var_dump($image);
+				$slides .= '<div class="mySlides fade">
 						<img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
 						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
 						<div class="text">' . $image->message . '</div>
 					</div>';
 					$i++;
-					}
+			}
 
 			$slider = '<div class="newsandevents">
 					  <div class="slideshow-container">'
 					  . $slides .
 						'<!-- Next and previous buttons -->
-						<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="prev" onclick="plusSlides(-1)">&#10094;</a>
-						<a onmouseover="clearTimeout(timer); showSlides(slideIndex);" class="next" onclick="plusSlides(1)">&#10095;</a>
+						<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+						<a class="next" onclick="plusSlides(1)">&#10095;</a>
 					  </div>
 					  <div class="allEvents">
 						  <img src="' . $CFG->wwwroot . '/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
@@ -81,10 +81,11 @@ class block_newsandevents extends block_base {
 							$links .
 						  '</div>
 					  </div>
+                      <input id="slidecount" type="hidden" value="' . count($images) . '">
 					  <script src="' . $CFG->wwwroot . '/blocks/newsandevents/main.js"></script>';
 		} else {
 			foreach ($images as $image) {
-				$slides .= '<div class="mySlides fade" style="display:block;">
+				$slides .= '<div class="mySlides fade">
 						<img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
 						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
 						<div class="text">' . $image->message . '</div>
