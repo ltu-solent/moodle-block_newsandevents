@@ -1,171 +1,153 @@
-    @media (min-width: 1201px) {
-      .newsandevents .news {
-        height: 285px;
-      }
-    }
+    /* @media (min-width: 1201px) { */
+      /* .newsandevents .news { */
+        /* height: 285px; */
+      /* } */
+    /* } */
 
-    @media (max-width: 1200px) and (min-width: 851px) {
-      .newsandevents .news {
-        height: 650px;
-        font-size: 2.5rem;
-      }
-       .newsandevents h1 {
-         font-size: 2.5rem;
-       }
-    }
+    /* @media (max-width: 1200px) and (min-width: 851px) { */
+      /* .newsandevents .news { */
+        /* height: 650px; */
+        /* font-size: 2.5rem; */
+      /* } */
+       /* .newsandevents h1 { */
+         /* font-size: 2.5rem; */
+       /* } */
+    /* } */
 
-    @media (max-width: 850px) and (min-width: 681px) {
-      .newsandevents .news {
-        height: 535px;
-        font-size: 4rem;
-      }
-      .newsandevents h1 {
-        font-size: 4rem;
-      }
-    }
+    /* @media (max-width: 850px) and (min-width: 681px) { */
+      /* .newsandevents .news { */
+        /* height: 535px; */
+        /* font-size: 4rem; */
+      /* } */
+      /* .newsandevents h1 { */
+        /* font-size: 4rem; */
+      /* } */
+    /* } */
 
-    @media (max-width: 680px) and (min-width: 601px) {
-      .newsandevents .news {
-        height: 440px;
-        font-size: 2rem;
-      }
-      .newsandevents h1 {
-        font-size: 2rem;
-      }
-    }
+    /* @media (max-width: 680px) and (min-width: 601px) { */
+      /* .newsandevents .news { */
+        /* height: 440px; */
+        /* font-size: 2rem; */
+      /* } */
+      /* .newsandevents h1 { */
+        /* font-size: 2rem; */
+      /* } */
+    /* } */
 
-    @media (max-width: 600px) and (min-width: 681px) {
-      .newsandevents .news {
-        height: 350px;
-        font-size: 2rem;
-      }
-      .newsandevents h1 {
-        font-size: 2rem;
-      }
-    }
+    /* @media (max-width: 600px) and (min-width: 681px) { */
+      /* .newsandevents .news { */
+        /* height: 350px; */
+        /* font-size: 2rem; */
+      /* } */
+      /* .newsandevents h1 { */
+        /* font-size: 2rem; */
+      /* } */
+    /* } */
 
-    @media (max-width: 470px) and (min-width: 391px) {
-      .newsandevents .news {
-        height: 275px;
-        font-size: 1.5rem;
-      }
-      .newsandevents h1 {
-        font-size: 1.5rem;
-      }
-    }
+    /* @media (max-width: 470px) and (min-width: 391px) { */
+      /* .newsandevents .news { */
+        /* height: 275px; */
+        /* font-size: 1.5rem; */
+      /* } */
+      /* .newsandevents h1 { */
+        /* font-size: 1.5rem; */
+      /* } */
+    /* } */
 
-    @media (max-width: 390px) {
-      .newsandevents .news {
-        height: 230px;
-        font-size: 1.5rem;
-      }
-      .newsandevents h1 {
-        font-size: 1.5rem;
-      }
-    }
+    /* @media (max-width: 390px) { */
+      /* .newsandevents .news { */
+        /* height: 230px; */
+        /* font-size: 1.5rem; */
+      /* } */
+      /* .newsandevents h1 { */
+        /* font-size: 1.5rem; */
+      /* } */
+    /* } */
 
-    .newsandevents{box-sizing:border-box}
+
+
+    .newsandevents{
+        box-sizing: border-box;
+    }
 
     /* Slideshow container */
     .newsandevents .slideshow-container {
-      max-width: 1000px;
-      position: relative;
-      margin: auto;
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+        max-height: 520px;
     }
 
     /* Hide the images by default */
     .newsandevents .mySlides {
-      display: none;
+        display: none;
     }
 
     /* Next & previous buttons */
     .newsandevents .prev, .newsandevents .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      margin-top: -22px;
-      padding: 16px;
-      color: white !important;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white !important;
+        font-weight: bold;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
     }
 
     /* Position the "next button" to the right */
     .newsandevents .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
+        right: 0;
+        border-radius: 3px 0 0 3px;
     }
 
     /* On hover, add a black background color with a little bit see-through */
-    .newsandevents .prev:hover, .newsandevents .next:hover {
-      background-color: rgba(0,0,0,0.8);
+    .newsandevents .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
     }
 
     /* Caption text */
     .newsandevents .text {
-      padding: 8px 12px;
-      position: absolute;
-      bottom: 8px;
-      width: 100%;
-    }
-
-    .allEvents {
-      height: 110px;
-      border-top: 1px solid rgba(0,0,0,.125);
-    }
-
-    .allEvents img {
-      height: 50px;
-      margin-top: 30px;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-    .allEvents .allEventsText {
-        margin-top: -42px;
-        margin-left: 80px;
+        padding: 8px 12px;
         position: absolute;
+        bottom: 8px;
+        width: 100%;
     }
-
-    .allEvents .allEventsStudent {
-        margin-top: -50px;
-        margin-left: 80px;
-        position: absolute;
+    
+    .allevents {
+        display: flex;
+        padding: 5px;
     }
-
-    .allEvents .allEventsStaff {
-        margin-top: -38px;
-        margin-left: 80px;
-        position: absolute;
+    
+    .allevents .icon-cal {
+        flex: 0.15;
+        padding: 4%;
     }
-
-    /* The dots/bullets/indicators */
-    .newsandevents .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.6s ease;
+    
+    .allevents .links {
+        flex: 0.85;   
+        align-self: center;        
     }
-
-    .newsandevents .active, .newsandevents .dot:hover {
-      background-color: #717171;
+    
+    .block_newsandevents .icon-cal {
+        font-size: 40px;
+        color: #3FAEE4;        
     }
 
     .block_newsandevents .card-text {
-    margin: 0 !important;
+        margin: 0 !important;
     }
 
     .block_newsandevents .card-body {
-    padding: 0 !important;
+        padding: 0 !important;
     }
+    
+    .editing .block_newsandevents .card-text {
+        margin: 20px !important;
+    }    
 
     /* Fading animation */
     .newsandevents .fade {
@@ -177,11 +159,11 @@
     }
 
     @-webkit-keyframes news-fade {
-      from {opacity: .4}
+      from {opacity: .9}
       to {opacity: 1}
     }
 
     @keyframes news-fade {
-      from {opacity: .4}
+      from {opacity: .9}
       to {opacity: 1}
     }

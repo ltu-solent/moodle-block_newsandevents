@@ -46,21 +46,21 @@ class block_newsandevents extends block_base {
 		$userrole = $DB->get_record('user', ['id' => $USER->id], 'department');
 
 		if ($userrole->department == 'student') {
-			$forumid    = get_config('newsandevents', 'forumidstudent');
-			$imagecount = get_config('newsandevents', 'numberofpostsstudents');
-			if(get_config('newsandevents', 'studenturl1')){
-				$links = '<a target="_blank" href = "' . get_config('newsandevents', 'studenturl1') . '">' . get_config('newsandevents', 'studenturl1text') . '</a>';
+			$forumid    = get_config('block_newsandevents', 'forumidstudent');
+			$imagecount = get_config('block_newsandevents', 'numberofpostsstudents');
+			if(get_config('block_newsandevents', 'studenturl1')){
+				$links = '<a target="_blank" href = "' . get_config('block_newsandevents', 'studenturl1') . '">' . get_config('block_newsandevents', 'studenturl1text') . '</a>';
 			}
 
-			if(get_config('newsandevents', 'studenturl2')){
-				$links .= '<br><a target="_blank" href = "' . get_config('newsandevents', 'studenturl2') . '">' . get_config('newsandevents', 'studenturl2text') . '</a>';
+			if(get_config('block_newsandevents', 'studenturl2')){
+				$links .= '<br><a target="_blank" href = "' . get_config('block_newsandevents', 'studenturl2') . '">' . get_config('block_newsandevents', 'studenturl2text') . '</a>';
 			}
-			$linksclass = 'allEventsStudent';
+			$linksclass = 'allevents student';
 		} else {
-			$forumid    = get_config('newsandevents', 'forumidstaff');
-			$imagecount = get_config('newsandevents', 'numberofpostsstaff');
-			$links = '  <a target="_blank" href = "' . get_config('newsandevents', 'staffurl') . '">' . get_config('newsandevents', 'staffurltext') . '</a>';
-			$linksclass = 'allEventsStaff';
+			$forumid    = get_config('block_newsandevents', 'forumidstaff');
+			$imagecount = get_config('block_newsandevents', 'numberofpostsstaff');
+			$links = '  <a target="_blank" href = "' . get_config('block_newsandevents', 'staffurl') . '">' . get_config('block_newsandevents', 'staffurltext') . '</a>';
+			$linksclass = 'allevents staff';
 		}
 
 		$images = $DB->get_records_sql("SELECT  f.itemid forum_id, ctx.id ctx_id, f.filename, fd.name, fp.message
@@ -79,34 +79,29 @@ class block_newsandevents extends block_base {
 									  LIMIT 0, $imagecount;");
 
 		$slides = '';
-        $i = 0;
 
 		if ($imagecount > 1) {
 			foreach ($images as $image) {
-                //var_dump($image);
-				$slides .= '<div class="mySlides fade">
-						<img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
-						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
-						<div class="text">' . $image->message . '</div>
-					</div>';
-					$i++;
+				$slides .=  '<div class="mySlides fade">
+                                <img alt="' . $image->name .'" src="' . $CFG->wwwroot . '/pluginfile.php/' . $image->ctx_id . '/mod_forum/attachment/'
+                                . $image->forum_id . '/' . $image->filename . '" style="width:100%">
+                                <div class="text">' . $image->message . '</div>
+                            </div>';
 			}
 
-			$slider = '<div class="newsandevents">
-					  <div class="slideshow-container">'
-					  . $slides .
-						'<!-- Next and previous buttons -->
-						<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-						<a class="next" onclick="plusSlides(1)">&#10095;</a>
-					  </div>
-					  <div class="allEvents">
-						  <img src="' . $CFG->wwwroot . '/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
-						  <div class="' . $linksclass . '">' .
-							$links .
-						  '</div>
-					  </div>
-                      <input id="slidecount" type="hidden" value="' . count($images) . '">
-					  <script src="' . $CFG->wwwroot . '/blocks/newsandevents/main.js"></script>';
+			$slider = ' <div class="newsandevents">
+                            <div class="slideshow-container">' . $slides .
+                                '<!-- Next and previous buttons -->
+                                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                            </div>
+                            <div class="' . $linksclass . '">                            
+                                <div class="icon-cal fas fa-calendar-alt"></div>
+                                <div class="links">' . $links . '</div>
+                            </div>
+                        </div>
+                        <input id="slidecount" type="hidden" value="' . count($images) . '">
+                        <script src="' . $CFG->wwwroot . '/blocks/newsandevents/main.js"></script>';
 		} else {
 			foreach ($images as $image) {
 				$slides .= '<div class="mySlides fade">
@@ -114,18 +109,15 @@ class block_newsandevents extends block_base {
 						. $image->forum_id . '/' . $image->filename . '" style="width:100%">
 						<div class="text">' . $image->message . '</div>
 					</div>';
-					$i++;
-					}
-			$slider = '<div class="newsandevents">
-					  	<div class="slideshow-container">'
-					   . $slides .
-					   '</div>
-							<div class="allEvents">
-						  <img src="' . $CFG->wwwroot . '/blocks/newsandevents/pix/slti-calendar-icon.png"></img>
-						  <div class="' . $linksclass . '">' .
-							$links .
-						  '</div>
-					  </div>';
+					//$i++;
+			}
+			$slider = ' <div class="newsandevents">
+                            <div class="slideshow-container">' . $slides . '</div>
+                            <div class="allEvents">
+                                <div class="icon-cal fas fa-calendar-alt"></div>
+                                <div class="' . $linksclass . '">' . $links . '</div>
+                            </div>
+                        </div>';
 		}
 
 
